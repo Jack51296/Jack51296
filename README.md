@@ -13,12 +13,12 @@ I build production workflows for generative image, video, and multimodal content
 
 <br />
 
-![Python](https://img.shields.io/badge/Python-3.11%2B-3776AB?style=flat-square&logo=python&logoColor=white)
-![OpenCV](https://img.shields.io/badge/OpenCV-4.x-5C3EE8?style=flat-square&logo=opencv&logoColor=white)
-![Blender](https://img.shields.io/badge/Blender-5.1-E87D0D?style=flat-square&logo=blender&logoColor=white)
-![FFmpeg](https://img.shields.io/badge/FFmpeg-media-007808?style=flat-square&logo=ffmpeg&logoColor=white)
-![PyTorch](https://img.shields.io/badge/PyTorch-CUDA-EE4C2C?style=flat-square&logo=pytorch&logoColor=white)
-![Pydantic](https://img.shields.io/badge/Pydantic-2.x-E92063?style=flat-square&logo=pydantic&logoColor=white)
+<img src="./assets/python.png" alt="Python 3.11+" width="120" height="24" />
+<img src="./assets/opencv.png" alt="OpenCV 4.x" width="110" height="24" />
+<img src="./assets/blender.png" alt="Blender 5.1" width="112" height="24" />
+<img src="./assets/ffmpeg.png" alt="FFmpeg" width="88" height="24" />
+<img src="./assets/pytorch.png" alt="PyTorch CUDA" width="128" height="24" />
+<img src="./assets/pydantic.png" alt="Pydantic 2.x" width="118" height="24" />
 
 </div>
 
