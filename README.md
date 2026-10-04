@@ -2,7 +2,9 @@
 
 # Mingyang Yao
 
-### AIGC Application Engineer · AIGC 应用工程师
+### AIGC Application Engineer
+
+AIGC 应用工程师
 
 I build production workflows for generative image, video, and multimodal content.
 
