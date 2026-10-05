@@ -8,6 +8,17 @@
 
 Whitebox Studio is a Python and Blender platform for building, analyzing, rendering, reviewing and packaging whitebox video. It treats `scene.json` as the shared data contract for forward construction, reverse analysis, rendering, quality control and text deliverables.
 
+## Engineering Spine
+
+| Engineering concern | Implementation evidence |
+| --- | --- |
+| **One contract across routes** | `scene.json`, `StoryPlan`, `LongTakePlan` and exported JSON Schema connect story planning, reverse analysis, Blender construction, QC and delivery. |
+| **Compile intent into motion** | Route beats and camera intent are compiled into frame-level keyframes with subject-specific motion limits, camera language and scale references. |
+| **Keep heavy vision optional** | TransNetV2/PySceneDetect, GroundingDINO/SAM 2.1 and DA3/MapAnything run behind capability detection and fallback routes; the main CLI exchanges JSON/NPZ with an isolated worker. |
+| **Make review state explicit** | Technical checks are programmatic, while sampled visual review, normal-speed viewing and curation remain separate human-marked states. |
+
+This is a private technical case study. The wording below distinguishes implemented code, optional adapters, mock/export defaults and deployment that has not been verified locally.
+
 ## Production Scenarios
 
 ### Story-driven previsualization
@@ -49,6 +60,8 @@ The default execution is mock or export-only. The package preserves image refere
 `Python 3.11+` · `Typer CLI` (`wbs`) · `Pydantic 2` · `JSON Schema` · `PyYAML` · `Jinja2` · `HTTPX` · `NumPy` · `OpenCV` · `Pillow` · `OpenPyXL` · `SQLite` · `pytest` · `ruff`
 
 `scene.json`, `story_plan` and `longtake_plan` are validated contracts. SQLite records input hashes, step states, model usage, cost records and human review states, allowing idempotent reruns and isolated failure recovery.
+
+**面向面试的结果：** The workflow turns a story or reference-video request into inspectable intermediate artifacts—scene contracts, reports, manifests and review states—instead of treating a model response as the final deliverable.
 
 ### 3D and media pipeline
 
@@ -94,6 +107,12 @@ The independent vision environment also declares `einops`, `OmegaConf`, `imageio
 | Docker / NVIDIA Container Toolkit / Mesa llvmpipe | 容器与 GPU / CPU 部署配置已编写，镜像尚未在本机构建验证 |
 
 The registered `SAM 3` adapter requires externally authorized weights; those weights are not installed. `COLMAP` / `MegaSaM` camera-track imports are supported as external NPZ inputs, not presented as local model deployments.
+
+### Evidence boundary
+
+- **技术验证：** project records include the real CLI, Blender/FFmpeg rendering and mock-model end-to-end path, plus resume and QC routes.
+- **已实现但可选：** vision adapters and provider adapters are registered behind capability checks; their presence does not mean every model weight or service is active on the current machine.
+- **未声明：** no public production users, team size, commercial impact or model-quality metric is claimed here.
 
 ## Quality and Production Controls
 

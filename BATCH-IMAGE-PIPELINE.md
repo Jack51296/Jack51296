@@ -8,6 +8,17 @@
 
 This Python pipeline turns source image collections into repeatable generation jobs and delivery-ready image pairs. It covers lighting edits, style conversion, color matching, geometric alignment, review and dataset handoff.
 
+## Engineering Spine
+
+| Engineering concern | Implementation evidence |
+| --- | --- |
+| **Recoverable API batches** | JSONL jobs, `ThreadPoolExecutor`, global rate limiting, `Retry-After`, bounded retries, existing-output skipping and per-item status keep a long batch resumable. |
+| **Separate generation from consistency** | GPT Image produces candidates; Lab color matching, ORB/RANSAC registration and style-aware resampling make the output pair auditable before delivery. |
+| **Treat delivery as a contract** | Seven-column CSV, review page, MD5 manifest and storage handoff preserve source, run, output and verification information. |
+| **Route uncertainty to review** | `ok`, `crop` and `unaligned` are explicit outcomes; weak matches remain reviewable instead of being silently accepted. |
+
+This is a private technical case study. The batch record below is evidence of a project run and is not presented as a public service or commercial scale claim.
+
 ## Production Scenarios
 
 - Lighting and relighting transformations across an image collection.
@@ -59,6 +70,8 @@ Style rules are explicit:
 
 The result is a stable input/output pair in the original image space, with unreliable matches routed to review instead of being silently accepted.
 
+**面向面试的结果：** the pipeline separates model variability from deterministic post-processing, so a reviewer can inspect the selected color version, transform, interpolation, feature domain and alignment status for each pair.
+
 ### Delivery and local tools
 
 `OpenPyXL` · `boto3` · S3-compatible `BlobStore` · `MD5` manifests · `websocket-client` · Chrome CDP · `code-server` automation · KFS / Ceph workspace
@@ -66,6 +79,12 @@ The result is a stable input/output pair in the original image space, with unrel
 The pipeline builds and verifies delivery CSVs, review pages and transfer manifests, then uploads aligned outputs to S3-compatible storage or prepares them for Labkit dataset import. MD5 checks make cross-machine transfers auditable.
 
 The local tools also perform cross-batch MD5 duplicate checks and build skip lists before JSONL execution. The project keeps A/B quality and style-rule regression runbooks so processing decisions can be compared against saved reports and review artifacts.
+
+## Evidence boundary
+
+- **项目批次证据：** the `style0914` record contains 61 source images, 61 successful generations, 61 crop classifications and 122 processed input/output files, with delivery and manifest artifacts.
+- **已实现机制：** API orchestration, Lab matching, ORB/RANSAC alignment, style rules, CSV validation, review export and MD5 checks are represented in the private project files.
+- **未声明：** no public production volume, customer metric, cost reduction or image-quality score is inferred from this batch.
 
 ## Reusable Agent Skills
 
