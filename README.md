@@ -13,12 +13,10 @@ I turn model APIs and vision tools into reproducible, reviewable media workflows
 
 <br />
 
-<img src="./assets/python.png" alt="Python 3.11+" width="120" height="24" />
-<img src="./assets/opencv.png" alt="OpenCV 4.x" width="110" height="24" />
-<img src="./assets/blender.png" alt="Blender 5.1" width="112" height="24" />
-<img src="./assets/ffmpeg.png" alt="FFmpeg" width="88" height="24" />
-<img src="./assets/pytorch.png" alt="PyTorch CUDA" width="128" height="24" />
-<img src="./assets/pydantic.png" alt="Pydantic 2.x" width="118" height="24" />
+<img src="./assets/aigc.png" alt="AIGC" width="82" height="24" />
+<img src="./assets/python.png" alt="Python" width="92" height="24" />
+<img src="./assets/comfyui.png" alt="ComfyUI" width="102" height="24" />
+<img src="./assets/vibe-coding.png" alt="Vibe Coding" width="124" height="24" />
 
 </div>
 
